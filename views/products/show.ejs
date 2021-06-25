@@ -1,0 +1,19 @@
+<% layout('layouts/boilerplate')  %> 
+    <div class="container d-flex flex-column justify-content-center align-items-center">
+        <div class="products card shadow-sm p-3 mb-5 bg-body rounded" style="width: 18rem;">
+            <div class="card-body">
+                <h5><%= product.name  %></h5>
+                <p>Price: zł<%= product.price %></p>
+                <p>Category: <a href="/products?category=<%= product.category %>"> <%= product.category %> </a></p>
+        </div>
+        </div>
+        <div class="btn-group shadow-sm p-3 mb-5 bg-body rounded" role="group" aria-label="Basic mixed styles example">
+            <a  class="btn btn-success" href="/products">Back to Products</a>
+            <a  class="btn btn-warning" href="/products/<%= product._id%>/edit ">Update Product</a>
+            <form action="/products/<%=product._id%>?_method=DELETE" method="POST">
+                <button class="btn btn-danger">DELETE</button>
+            </form>
+        </div>
+</div>
+</body>
+</html>

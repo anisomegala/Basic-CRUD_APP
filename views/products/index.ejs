@@ -1,0 +1,58 @@
+<% layout('layouts/boilerplate')  %> 
+
+<h1 class="headings"> <%= category %>  products!</h1>
+<section class="productsUpdate d-md-flex justify-content-md-center align-items-md-center">   
+        <div class="products px-md-5">
+            <ul class=allProducts>
+                <% for(let product of products) { %>
+                    <li><a href="/products/<%= product._id %>"><%= product.name %> - <%= product.price %> zl </a></li>
+            <% } %>
+            </ul> 
+        </div> 
+        <div class="insertNewProduct">
+            <h2>Insert New Product</h2> 
+            <form action="/users/<%=id%>/products" method="POST" class="validation row g-3" novalidate>
+                <div class="">
+                    <label for="name" class="form-label">Product name</label>
+                    <input class="form-control" type="text" name="name" placeholder="New Product"  id="name" required>
+                    <div class="valid-feedback">
+                        Ok!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please provide product name.
+                    </div>
+                </div>
+                <div class="">
+                    <label for="price" class="form-label">Price</label>
+                    <div class="input-group">
+                        <span class="input-group-text">zł</span>
+                        <input class="form-control" type="text" name="price" placeholder="Set Price" id="price" required>
+                        <span class="input-group-text">.00</span>
+                    </div>
+                    <div class="valid-feedback">
+                        Ok!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please provide product price.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="category" class="form-label">Select category</label>
+                    <select class="form-select" name="category" id="category" required>
+                        <% for(let category of categories) { %>
+                            <option value="<%=category%>"><%=category%></option>
+                    <% } %> 
+                    </select>
+                    <div class="valid-feedback">
+                        Ok!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please provide product price.
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-primary">Add Product</button>
+                </div>
+            </form>
+        </div>
+    </section>    
