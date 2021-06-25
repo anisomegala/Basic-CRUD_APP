@@ -1,0 +1,43 @@
+<% layout('layouts/boilerplate')  %>
+<div class="insertNewProduct">
+    <h2>Insert New Product</h2> 
+    <form action="/products" method="POST" class="validation row g-3" novalidate>
+        <div class="">
+            <label for="username" class="form-label">Username</label>
+            <input class="form-control" type="text" name="username" placeholder="username"  id="username" required>
+            <div class="valid-feedback">
+                Ok!
+            </div>
+            <div class="invalid-feedback">
+                Please provide username.
+            </div>
+        </div>
+        <div class="">
+            <label for="email" class="form-label">email</label>
+            <div class="input-group">
+                <input class="form-control" type="email" name="email" placeholder="email" id="email" required>  
+            </div>
+            <div class="valid-feedback">
+                Ok!
+            </div>
+            <div class="invalid-feedback">
+                Please provide valid email.
+            </div>
+        </div>
+        <div class="">
+            <label for="password" class="form-label">password</label>
+            <div class="input-group">
+                <input class="form-control" type="password" name="password" placeholder="password" id="password" required>
+            </div>
+            <div class="valid-feedback">
+                Ok!
+            </div>
+            <div class="invalid-feedback">
+                Please provide valid email.
+            </div>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-primary">Add Product</button>
+        </div>
+    </form>
+</div>

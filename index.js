@@ -9,6 +9,8 @@ const engine = require('ejs-mate');
 const morgan = require('morgan');
 const methodOverride = require('method-override');
 const Product = require('./models/product');
+const Far = require('./models/user');
+const User = require('./models/user');
 
 // mongoose connection 
 mongoose.connect('mongodb://localhost:27017/farmStand', {useNewUrlParser: true, useUnifiedTopology: true})
@@ -53,9 +55,54 @@ const validateProduct = (req, res, next) => {
    }
 }
 
+// user routes
+app.get('/users', wrapAsync(async(req, res, next)=> {
+    const users = await User.find({});
+    res.render('users/listUsers', { users })
+}))
+
+app.get('/users/new', (req, res) => {
+    res.render('users/new')
+})
+
+
+app.get('users/:id', async(req, res) => {
+    const user = await User.findById(req.params.id);
+    res.render('users/show', { user });
+}
+)
+
+app.post('/users', wrapAsync(async(req, res, next) => {
+    const user = new User(req.body);
+    await user.save();
+    res.redirect('/users')
+}))
+
+app.get('/users/:id/products/new', (req, res) => {
+    const { id } = req.params;
+    res.render('products/new', { categories, id })
+})
+
+app.post('/users/:id/products', async(req, res) => {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    const { name, price, categorie } = req.body;
+    const product = new Product({ name, price, categorie })
+    user.products.push(product);
+    product.user = user;
+    await user.save();
+    await product.save();
+    res.send(user)
+})
+
+
+
+
+
+// products routes
 
 // loop for selected item category
-const categories = ['fruit', 'vegetable', 'dairy', 'others'];
+const categories = ['fruit', 'vegetable', 'dairy', 'others', 'beverages'];
 // roots
 app.get('/products', wrapAsync(async(req, res) => {
         const { category } = req.query;

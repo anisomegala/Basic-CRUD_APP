@@ -11,7 +11,7 @@
         </div> 
         <div class="insertNewProduct">
             <h2>Insert New Product</h2> 
-            <form action="/products" method="POST" class="validation row g-3" novalidate>
+            <form action="/users/<%=id%>/products" method="POST" class="validation row g-3" novalidate>
                 <div class="">
                     <label for="name" class="form-label">Product name</label>
                     <input class="form-control" type="text" name="name" placeholder="New Product"  id="name" required>

@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
+
 
 const productSchema = new mongoose.Schema({
     name: {
@@ -13,7 +15,11 @@ const productSchema = new mongoose.Schema({
     category: {
         type: String,
         lowercase: true,
-        enum: ['fruit','vegetable','dairy', 'others']
+        enum: ['fruit','vegetable','dairy', 'others', 'beverages']
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     }
 })
 

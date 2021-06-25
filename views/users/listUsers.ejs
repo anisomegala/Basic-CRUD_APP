@@ -1,0 +1,11 @@
+<% layout('layouts/boilerplate')  %> 
+
+<h1 class="headings">username</h1>
+<section class="productsUpdate d-md-flex justify-content-md-center align-items-md-center">   
+        <div class="products px-md-5">
+            <ul class="allProducts">
+                <% for(let user of users) { %>
+                    <li><a href="/users/<%=user._id%>"><%= user.username %></a></li>
+                <% } %>
+            </ul> 
+        </div> 
